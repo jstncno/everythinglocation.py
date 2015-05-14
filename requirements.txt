@@ -1,0 +1,8 @@
+chardet==2.2.1
+git-review==1.24
+requests==2.7.0
+simplejson==3.6.5
+six==1.9.0
+stgit===0.17.1-dirty
+urllib3==1.10.4
+virtualenv==12.1.1
