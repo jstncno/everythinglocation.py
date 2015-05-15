@@ -22,6 +22,8 @@ __license__ = 'MIT'
 
 import os
 
+from .base import EverythingLocation
+
 def _get_env_key(key):
     try:
         return os.environ[key]
