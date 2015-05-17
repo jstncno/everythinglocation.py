@@ -37,6 +37,9 @@ class TestVersion(unittest.TestCase):
         assert(isinstance(self.d, dict))
 
     def test_version(self):
+        '''
+        Tests for valid response status and prints API Version
+        '''
         assert('status' in self.d)
         assert(self.d['status'] == 'OK')
         assert('Server' in self.d)
