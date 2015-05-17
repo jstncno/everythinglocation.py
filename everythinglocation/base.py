@@ -21,7 +21,7 @@ class EverythingLocation(object):
         'cache-control': 'max-age=0, no-store, no-cache',
         'content-type': 'application/json; charset=utf-8'
     }
-    BASE_PATH = 'https://saas.loqate.com/rest/version'
+    BASE_PATH = ''
     URLS = {}
 
     def __init__(self):

@@ -25,8 +25,7 @@ class TestVersion(unittest.TestCase):
         '''
         self.EL = everythinglocation.EverythingLocation()
         self.params = self.EL._get_params({})
-        self.URL = self.EL.BASE_PATH
-        self.response = requests.get(self.URL, self.params)
+        self.response = requests.get('https://saas.loqate.com/rest/version', self.params)
         self.d = self.response.json()
 
     def test_response(self):
