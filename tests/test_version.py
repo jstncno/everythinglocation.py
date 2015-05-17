@@ -27,17 +27,22 @@ class TestVersion(unittest.TestCase):
         self.EL = everythinglocation.EverythingLocation()
         self.params = self.EL._get_params({})
         self.URL = self.EL.BASE_PATH
+        self.response = requests.get(self.URL, self.params)
+        self.d = ast.literal_eval(self.response.text)
+
+    def test_response(self):
+        '''
+        Tests for validity of response
+        '''
+        assert(isinstance(self.d, dict))
 
     def test_version(self):
-        r = requests.get(self.URL, self.params)
-        d = ast.literal_eval(r.text)
-        assert(isinstance(d, dict))
-        assert('status' in d)
-        assert(d['status'] == 'OK')
-        assert('Server' in d)
-        assert('Version' in d['Server'])
+        assert('status' in self.d)
+        assert(self.d['status'] == 'OK')
+        assert('Server' in self.d)
+        assert('Version' in self.d['Server'])
         print '-' * 70
-        print 'Cloud API Version:', d['Server']['Version']
+        print 'Cloud API Version:', self.d['Server']['Version']
 
 if __name__ == '__main__':
     unittest.main()
