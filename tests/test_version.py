@@ -31,6 +31,7 @@ class TestVersion(unittest.TestCase):
     def test_version(self):
         r = requests.get(self.URL, self.params)
         d = ast.literal_eval(r.text)
+        assert(isinstance(d, dict))
         assert('status' in d)
         assert(d['status'] == 'OK')
         assert('Server' in d)
