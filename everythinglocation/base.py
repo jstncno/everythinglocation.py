@@ -25,7 +25,7 @@ class EverythingLocation(object):
     URLS = {}
 
     def __init__(self):
-        self.base_uri = 'https://saas.loqate.com/rest/version'
+        self.base_uri = 'https://saas.loqate.com/rest'
 
     def _get_path(self, key):
         return self.BASE_PATH + self.URLS[key]
