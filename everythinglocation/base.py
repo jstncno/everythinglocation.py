@@ -10,6 +10,8 @@ This module implements the base class of everythinglocation.
 """
 import json, requests
 
+from .response import ELResponse
+
 class APIKeyError(Exception):
     pass
 
@@ -22,7 +24,9 @@ class EverythingLocation(object):
         'content-type': 'application/json; charset=utf-8'
     }
     BASE_PATH = ''
-    URLS = {}
+    URLS = {
+        'version': '/version'
+    }
 
     def __init__(self):
         self.base_uri = 'https://saas.loqate.com/rest'

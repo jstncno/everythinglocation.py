@@ -23,6 +23,7 @@ __license__ = 'MIT'
 import os
 
 from .base import EverythingLocation
+from .response import ELResponse
 
 def _get_env_key(key):
     try:
