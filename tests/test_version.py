@@ -11,6 +11,8 @@ This unittest module tests the response for the Cloud API Version
 
 import requests
 import unittest
+import json
+import ast
 
 import everythinglocation
 
@@ -23,9 +25,18 @@ class TestVersion(unittest.TestCase):
         Basic setup
         '''
         self.EL = everythinglocation.EverythingLocation()
+        self.params = self.EL._get_params({})
+        self.URL = self.EL.BASE_PATH
 
     def test_version(self):
-        pass
+        r = requests.get(self.URL, self.params)
+        d = ast.literal_eval(r.text)
+        assert('status' in d)
+        assert(d['status'] == 'OK')
+        assert('Server' in d)
+        assert('Version' in d['Server'])
+        print '-' * 70
+        print 'Cloud API Version:', d['Server']['Version']
 
 if __name__ == '__main__':
     unittest.main()
