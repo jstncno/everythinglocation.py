@@ -44,6 +44,7 @@ class TestVersion(unittest.TestCase):
         assert 'Version' in self.d['Server']
         print '-' * 70
         print 'Cloud API Version:', self.d['Server']['Version']
+        print self.EL.version()
 
     def test_demo(self):
         self.params['p'] = 'v+g'
