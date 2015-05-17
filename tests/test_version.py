@@ -12,7 +12,6 @@ This unittest module tests the response for the Cloud API Version
 import requests
 import unittest
 import json
-import ast
 
 import everythinglocation
 
@@ -28,7 +27,7 @@ class TestVersion(unittest.TestCase):
         self.params = self.EL._get_params({})
         self.URL = self.EL.BASE_PATH
         self.response = requests.get(self.URL, self.params)
-        self.d = ast.literal_eval(self.response.text)
+        self.d = self.response.json()
 
     def test_response(self):
         '''
