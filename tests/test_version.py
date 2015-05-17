@@ -34,16 +34,16 @@ class TestVersion(unittest.TestCase):
         '''
         Tests for validity of response
         '''
-        assert(isinstance(self.d, dict))
+        assert isinstance(self.d, dict)
 
     def test_version(self):
         '''
         Tests for valid response status and prints API Version
         '''
-        assert('status' in self.d)
-        assert(self.d['status'] == 'OK')
-        assert('Server' in self.d)
-        assert('Version' in self.d['Server'])
+        assert 'status' in self.d
+        assert self.d['status'] == 'OK'
+        assert 'Server' in self.d
+        assert 'Version' in self.d['Server']
         print '-' * 70
         print 'Cloud API Version:', self.d['Server']['Version']
 
