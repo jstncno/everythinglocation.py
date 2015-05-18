@@ -33,7 +33,7 @@ The `EverythingLocation()` class takes in a Python dictionary as input to send t
 ```python
 >>> import everythinglocation
 >>> EL = everythinglocation.EverythingLocation()
->> print EL.version
+>>> print EL.version
 2.15.0.7762
 >>> params = {'addr': '999 Baker Way San Mateo CA USA'}
 >>> response = EL.verify(params)
