@@ -3,11 +3,11 @@
 """
 everythinglocation
 ~~~~~~~~~~
-*everythinglocation* is a wrapper, written in Python, for the everythinglocation 
-API provided by GBG Loqate. By calling the functions available in *everything* you
-can simplify your code and easily make calls to the everythinglocation service.
-To find out more about everythinglocation, check out the web page 
-https://www.everythinglocation.com and documentation page 
+*everythinglocation* is a wrapper, written in Python, for the everythinglocation
+API provided by GBG Loqate. By calling the functions available in *everything*
+you can simplify your code and easily make calls to the everythinglocation
+service. To find out more about everythinglocation, check out the web page
+https://www.everythinglocation.com and documentation page
 https://www.everythinglocation.com/api-rest-transactional.
 
 :copyright: (c) 2015 by Justin Cano.

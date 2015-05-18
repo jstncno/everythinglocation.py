@@ -34,5 +34,17 @@ class TestVerify(unittest.TestCase):
         assert len(result.results) > 0
         assert 'V44' in result.results[0].AVC
 
+        params['addr'] = '999 Baker Way San Mateo CA USA'
+        result = self.EL.verify(params)
+        assert len(result.results) > 0
+        assert 'V44' in result.results[0].AVC
+        print result.results[0].AVC
+        print result.results[0].Address1
+        print result.results[0].Address2
+        print result.results[0].CountryName
+        assert 'United States' == result.results[0].CountryName
+        assert 'US' == result.results[0].ISO3166_2
+
+
 if __name__ == '__main__':
     unittest.main()
