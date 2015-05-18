@@ -1,5 +1,4 @@
 # everythinglocation.py
-====================
 
 A wrapper for the everythinglocation API
 ----------------------------------------
