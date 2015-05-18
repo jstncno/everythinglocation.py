@@ -5,7 +5,7 @@ A wrapper for the everythinglocation API
 
 _everythinglocation.py_ is a Pythonic wrapper library for the [everythinglocation](https://www.everythinglocation.com) API. By calling the functions and methods available in _everythinglocation.py_ you can simplify your code and easily access the Address Verification and Geocoding services that **everythinglocation** provides. To learn more about **everythinglocation**, visit their website at [https://www.everythinglocation.com](https://www.everythinglocation.com). **everythinglocation** is a product of [GBG Loqate](http://www.loqate.com).
 
-**NOTE**: _everythinglocation.py_ is still currently in its development stages. This should not be used for production as this branch is unstable and may product unexpected results.
+**NOTE**: _everythinglocation.py_ is still currently in its development stages. This should not be used for production as this branch is unstable and may produce unexpected results.
 
 Features
 --------
