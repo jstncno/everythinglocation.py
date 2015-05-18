@@ -25,7 +25,7 @@ class TestVersion(unittest.TestCase):
         '''
         self.EL = everythinglocation.EverythingLocation()
         self.params = self.EL._get_params({})
-        self.response = requests.get('https://saas.loqate.com/rest/version', self.params)
+        self.response = requests.get('https://saas.loqate.com/rest/version', params=self.params)
         self.d = self.response.json()
 
     def test_response(self):
@@ -42,6 +42,7 @@ class TestVersion(unittest.TestCase):
         assert self.d['status'] == 'OK'
         assert 'Server' in self.d
         assert 'Version' in self.d['Server']
+        print
         print '-' * 70
         print 'Cloud API Version:', self.d['Server']['Version']
         print self.EL.version

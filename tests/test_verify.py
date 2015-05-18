@@ -38,6 +38,7 @@ class TestVerify(unittest.TestCase):
         result = self.EL.verify(params)
         assert len(result.results) > 0
         assert 'V44' in result.results[0].AVC
+        print
         print result.results[0].AVC
         print result.results[0].Address1
         print result.results[0].Address2
