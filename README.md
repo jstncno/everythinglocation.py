@@ -45,7 +45,7 @@ V44-I44-P3-100
 San Mateo CA 94404-1578
 >>> print response.results[0].CountryName
 United States
->> print result.results[0].ISO3166_2
+>>> print result.results[0].ISO3166_2
 US
 ```
 For more information about input parameters and output fields, please visit the [everythinglocation REST Transactional Processing Documentation](https://www.everythinglocation.com/api-rest-transactional/).
