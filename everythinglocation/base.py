@@ -3,7 +3,7 @@
 """
 everythinglocation.base
 ~~~~~~~~~~~~~~~
-This module implements the base class of everythinglocation.
+This module implements the class that makes calls to the everythinglocation API.
 
 :copyright: (c) 2015 by Justin Cano
 :license: MIT, see LICENSE for more details
@@ -30,10 +30,8 @@ class EverythingLocation(object):
 
     def __init__(self):
         self.base_uri = 'https://saas.loqate.com/rest'
-
-    def version(self):
         path = self._get_path('version')
-        return ELResponse(self._GET(path)).version
+        self.version = ELResponse(self._GET(path)).version
 
     def verify(self, params):
         params['p'] = 'v'

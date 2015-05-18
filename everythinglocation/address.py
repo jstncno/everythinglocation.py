@@ -16,8 +16,8 @@ class ELAddress(object):
     '''
     The Address class
     '''
-    def __init__(self, result):
-        self._set_attrs_to_values(result)
+    def __init__(self, fields):
+        self._set_attrs_to_values(fields)
 
     def _set_attrs_to_values(self, response={}):
         '''
@@ -25,4 +25,4 @@ class ELAddress(object):
         '''
         if isinstance(response, dict):
             for key in response.keys():
-                setattr(self, key, response[key])
+                setattr(self, key.replace('-', '_'), response[key])

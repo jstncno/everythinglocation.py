@@ -31,7 +31,8 @@ class TestVerify(unittest.TestCase):
         '''
         params = {'addr': '22 caledonia place bristol GBR'}
         result = self.EL.verify(params)
-        print result.results[0].AVC
+        assert len(result.results) > 0
+        assert 'V44' in result.results[0].AVC
 
 if __name__ == '__main__':
     unittest.main()

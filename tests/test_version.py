@@ -44,14 +44,7 @@ class TestVersion(unittest.TestCase):
         assert 'Version' in self.d['Server']
         print '-' * 70
         print 'Cloud API Version:', self.d['Server']['Version']
-        print self.EL.version()
-
-    def test_demo(self):
-        self.params['p'] = 'v+g'
-        self.params['addr'] = '22 caledonia place bristol GBR'
-        self.response = requests.get('https://saas.loqate.com/rest', self.params)
-        #print self.response.json()
-        response = everythinglocation.ELResponse(self.response.json())
+        print self.EL.version
 
 if __name__ == '__main__':
     unittest.main()
