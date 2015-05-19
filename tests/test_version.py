@@ -9,9 +9,9 @@ This unittest module tests the response for the Cloud API Version
 :license: MIT, see LICENSE for more details
 """
 
+import vcr
 import requests
 import unittest
-import json
 
 import everythinglocation
 
@@ -19,6 +19,7 @@ class TestVersion(unittest.TestCase):
     '''
     This unittest module tests the response for the Cloud API Version
     '''
+    @vcr.use_cassette('tests/cassettes/version.yaml')
     def setUp(self):
         '''
         Basic setup
