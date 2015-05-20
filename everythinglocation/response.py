@@ -21,6 +21,7 @@ class ELResponse(object):
     The object returned from calls to the everythinglocation API
     '''
     def __init__(self, response):
+        self.body = response
         self.status = response['status']
         if self.status != 'OK':
             raise BadResponseError
