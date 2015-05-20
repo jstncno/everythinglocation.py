@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-everythinglocation.base
+test_verify
 ~~~~~~~~~~~~~~~
 This unittest module tests the everythinglocation Verify Process
 
@@ -19,7 +19,7 @@ class TestVerify(unittest.TestCase):
     '''
     This unittest module tests the everythinglocation Verify Process
     '''
-    @vcr.use_cassette('tests/cassettes/verify_setup.yaml')
+    @vcr.use_cassette('tests/cassettes/setup.yaml')
     def setUp(self):
         '''
         Basic setup

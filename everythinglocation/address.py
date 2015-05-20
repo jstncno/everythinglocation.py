@@ -18,6 +18,7 @@ class ELAddress(object):
     '''
     def __init__(self, fields):
         self._set_attrs_to_values(fields)
+        self.fields = self.__dict__.keys()
 
     def _set_attrs_to_values(self, response={}):
         '''

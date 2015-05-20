@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-everythinglocation.base
+test_version
 ~~~~~~~~~~~~~~~
 This unittest module tests the response for the Cloud API Version
 
