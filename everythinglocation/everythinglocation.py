@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-everythinglocation.base
+everythinglocation.everythinglocation
 ~~~~~~~~~~~~~~~
 This module implements the class that makes calls to the everythinglocation API.
 
