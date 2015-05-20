@@ -27,7 +27,9 @@ class EverythingLocation(Loqate):
         self.response = ELResponse(self._GET(resource='version'))
         self.version = self.response.version
 
-    def verify(self, params):
+    def verify(self, params, geocode=False):
         params['p'] = 'v'
+        if geocode:
+            params['p'] += '+g'
         return ELResponse(self._GET(params=params))
 
