@@ -34,7 +34,9 @@ class TestAddress(unittest.TestCase):
         params = {'addr': '999 Baker Way San Mateo CA USA'}
         result = self.EL.verify(params)
         assert len(result.results) > 0
+        print
         print result.results[0].fields
+        print '-' * 70
 
 
 if __name__ == '__main__':
