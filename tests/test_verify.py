@@ -19,14 +19,14 @@ class TestVerify(unittest.TestCase):
     '''
     This unittest module tests the everythinglocation Verify Process
     '''
-    @vcr.use_cassette('tests/cassettes/verify_setup.yaml')
+    #@vcr.use_cassette('tests/cassettes/verify_setup.yaml')
     def setUp(self):
         '''
         Basic setup
         '''
         self.EL = everythinglocation.EverythingLocation()
 
-    @vcr.use_cassette('tests/cassettes/verify.yaml')
+    #@vcr.use_cassette('tests/cassettes/verify.yaml')
     def test_verify(self):
         '''
         Tests for valid response from the Verify Process

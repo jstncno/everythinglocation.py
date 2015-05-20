@@ -19,7 +19,7 @@ class TestVersion(unittest.TestCase):
     '''
     This unittest module tests the response for the Cloud API Version
     '''
-    @vcr.use_cassette('tests/cassettes/version.yaml')
+    #@vcr.use_cassette('tests/cassettes/version.yaml')
     def setUp(self):
         '''
         Basic setup

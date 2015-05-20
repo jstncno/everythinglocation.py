@@ -15,7 +15,7 @@ from .response import ELResponse
 class APIKeyError(Exception):
     pass
 
-class EverythingLocation(object):
+class Loqate(object):
     headers = {
         'content-length': '50',
         'keep-alive': 'timeout=1, max=100',
@@ -24,24 +24,16 @@ class EverythingLocation(object):
         'content-type': 'application/json; charset=utf-8'
     }
     BASE_PATH = ''
-    URLS = {
-        'version': 'version'
-    }
+    RESOURCES = {}
 
     def __init__(self):
-        self.base_uri = 'https://saas.loqate.com/rest'
-        path = self._get_path('version')
-        self.version = ELResponse(self._GET(path)).version
-
-    def verify(self, params):
-        params['p'] = 'v'
-        return ELResponse(self._GET(params=params))
+        self.base_uri = 'https://saas.loqate.com'
 
     def _get_path(self, key):
-        return self.BASE_PATH + self.URLS[key]
+        return os.path.join(self.BASE_PATH, self.RESOURCES[key]) if key else self.BASE_PATH
 
-    def _get_complete_url(self, path):
-        return os.path.join(self.base_uri, path)
+    def _get_complete_url(self, resource):
+        return os.path.join(self.base_uri, self._get_path(resource))
 
     def _get_params(self, params):
         from . import API_KEY
@@ -55,8 +47,8 @@ class EverythingLocation(object):
             params = api_dict
         return params
 
-    def _request(self, method, path, params=None):
-        url = self._get_complete_url(path)
+    def _request(self, method, resource, params=None):
+        url = self._get_complete_url(resource)
         params = self._get_params(params)
 
         response = requests.request(
@@ -66,11 +58,13 @@ class EverythingLocation(object):
         response.encoding = 'utf-8'
         return response.json()
 
-    def _GET(self, path='', params=None):
-        return self._request('GET', path, params=params)
+    def _GET(self, resource=None, params=None):
+        return self._request('GET', resource, params=params)
 
+    '''
     def _POST(self, path, params=None, payload=None):
         return self._request('POST', path, params=params, payload=payload)
 
     def _DELETE(self, path, params=None, payload=None):
         return self._request('DELETE', path, params=params, payload=payload)
+    '''
