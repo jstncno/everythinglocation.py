@@ -27,3 +27,7 @@ class ELAddress(object):
         if isinstance(response, dict):
             for key in response.keys():
                 setattr(self, key.replace('-', '_'), response[key])
+
+    def __str__(self):
+        import pprint
+        return pprint.pformat(self.__dict__, indent=4)
