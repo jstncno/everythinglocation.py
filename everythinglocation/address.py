@@ -30,4 +30,4 @@ class ELAddress(object):
 
     def __str__(self):
         import pprint
-        return pprint.pformat(self.__dict__, indent=4)
+        return pprint.pformat({key: self.__dict__[key] for key in self.__dict__.keys() if key != 'fields'})
