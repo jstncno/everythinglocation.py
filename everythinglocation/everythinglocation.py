@@ -16,12 +16,13 @@ from .response import ELResponse
 class EverythingLocation(Loqate):
     BASE_PATH = 'rest'
     RESOURCES = {
-        'version': 'version'
+        'version': 'version',
+        'authorize': 'authorize.php'
     }
 
     def __init__(self):
         super(EverythingLocation, self).__init__()
-        self.response = ELResponse(self._GET(resource='version'))
+        self.response = self._process(params={}, resource='version') #ELResponse(self._GET(resource='version'))
         self.version = self.response.version
 
     def verify(self, params, geocode=False):
@@ -36,5 +37,8 @@ class EverythingLocation(Loqate):
             params['p'] += '+g'
         return self._process(params)
 
-    def _process(self, params):
-        return ELResponse(self._GET(params=params))
+    def authorize(self, auth):
+        return self._process(auth, resource='authorize')
+
+    def _process(self, params, resource=None):
+        return ELResponse(self._GET(params=params, resource=resource))

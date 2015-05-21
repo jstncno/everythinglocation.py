@@ -61,10 +61,10 @@ class Loqate(object):
     def _GET(self, resource=None, params=None):
         return self._request('GET', resource, params=params)
 
-    '''
     def _POST(self, path, params=None, payload=None):
         return self._request('POST', path, params=params, payload=payload)
 
+    '''
     def _DELETE(self, path, params=None, payload=None):
         return self._request('DELETE', path, params=params, payload=payload)
     '''

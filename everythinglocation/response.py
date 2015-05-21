@@ -28,6 +28,8 @@ class ELResponse(object):
         if 'Server' in response:
             if 'Version' in response['Server']:
                 self.version = response['Server']['Version']
+        if 'session_id' in response:
+            self.session_id = response['session_id']
         if 'results' in response:
             self.results = []
             self._build_results(response['results'])
