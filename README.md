@@ -1,5 +1,7 @@
 # everythinglocation.py
 
+![Build Status](https://travis-ci.org/bumrush/everythinglocation.py.svg?branch=master)
+
 A wrapper for the everythinglocation API
 ----------------------------------------
 
