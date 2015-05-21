@@ -1,6 +1,7 @@
 *.pyc
 .env
 tests/cassettes/
+test.py
 
 #### joe made this: https://goel.io/joe
 
