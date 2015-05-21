@@ -2,6 +2,7 @@
 .env
 tests/cassettes/
 test.py
+sample.txt
 
 #### joe made this: https://goel.io/joe
 
