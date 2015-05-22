@@ -16,6 +16,9 @@ from .address import ELAddress
 class BadResponseError(Exception):
     pass
 
+class InvalidCredentialsError(Exception):
+    pass
+
 class ELResponse(object):
     '''
     The object returned from calls to the everythinglocation API
@@ -62,3 +65,29 @@ class BatchConfirmResponse(ELResponse):
             self.batch_id = response['BatchId']
         except:
             raise BadResponseError
+
+class ELAuth(ELResponse):
+    def __init__(self, response):
+        EL = EverythingLocation()
+        try:
+            if not auth:
+                assert 'username' in response.keys()
+                assert 'password' in response.keys()
+                for key, value in response.iteritems():
+                    auth[key] = value
+            else:
+                assert isinstance(auth, dict)
+                assert 'username' in auth.keys()
+                assert 'password' in auth.keys()
+            auth_session = EL.authorize(auth)
+            self._session_id = auth_response.session_id
+        except:
+            raise InvalidCredentialsError
+
+    @property
+    def session_id(self):
+        return base64.b64encode(self._session_id)
+
+    @session_id.setter
+    def session_id(self, value):
+        self._session_id = base64.b64encode(value)

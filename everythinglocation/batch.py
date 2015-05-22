@@ -12,14 +12,11 @@ everythinglocation API.
 import requests, os
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
-from .base import Loqate
+from .base import Loqate, ELAuth
 from .everythinglocation import EverythingLocation
 from .response import BatchConfirmResponse, BatchCreateResponse
 
 class MissingRequiredParameters(Exception):
-    pass
-
-class InvalidCredentialsError(Exception):
     pass
 
 class Batch(Loqate):
@@ -84,21 +81,4 @@ class Batch(Loqate):
         print response.body
         return response
 
-class ELAuth(object):
-    def __init__(self, auth=None, **kwargs):
-        EL = EverythingLocation()
-        try:
-            if not auth:
-                assert 'username' in kwargs.keys()
-                assert 'password' in kwargs.keys()
-                for key, value in kwargs.iteritems():
-                    auth[key] = value
-            else:
-                assert isinstance(auth, dict)
-                assert 'username' in auth.keys()
-                assert 'password' in auth.keys()
-        except:
-            raise InvalidCredentialsError
 
-        auth_session = EL.authorize(auth)
-        self.session_id = auth_response.session_id

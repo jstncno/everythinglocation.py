@@ -8,7 +8,7 @@ This module implements the class that makes calls to the everythinglocation API.
 :copyright: (c) 2015 by Justin Cano
 :license: MIT, see LICENSE for more details
 """
-import json, requests, os
+import json, requests, os, base64
 
 from .response import ELResponse
 

@@ -22,7 +22,7 @@ __license__ = 'MIT'
 
 import os
 
-from .everythinglocation import EverythingLocation
+from .everythinglocation import EverythingLocation, ELAuth
 from .batch import Batch
 from .response import ELResponse
 

@@ -11,7 +11,7 @@ This module implements the class that makes calls to the everythinglocation API.
 import requests
 
 from .base import Loqate
-from .response import ELResponse
+from .response import ELResponse, ELAuth
 
 class EverythingLocation(Loqate):
     BASE_PATH = 'rest'
@@ -37,8 +37,10 @@ class EverythingLocation(Loqate):
             params['p'] += '+g'
         return self._process(params)
 
-    def authorize(self, auth):
-        return self._process(auth, resource='authorize')
+    def authorize(self, auth=None, **kwargs):
+        response = self._process(auth, resource='authorize')
+        return ELAuth(response)
 
     def _process(self, params, resource=None):
         return ELResponse(self._GET(params=params, resource=resource))
+
