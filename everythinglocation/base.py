@@ -47,12 +47,12 @@ class Loqate(object):
             params = api_dict
         return params
 
-    def _request(self, method, resource, params=None):
+    def _request(self, method, resource, params=None, **kwargs):
         url = self._get_complete_url(resource)
         params = self._get_params(params)
 
         response = requests.request(
-            method, url, params=params)
+            method, url, params=params, **kwargs)
 
         response.raise_for_status()
         response.encoding = 'utf-8'
@@ -61,8 +61,8 @@ class Loqate(object):
     def _GET(self, resource=None, params=None):
         return self._request('GET', resource, params=params)
 
-    def _POST(self, path, params=None, payload=None):
-        return self._request('POST', path, params=params, payload=payload)
+    def _POST(self, resource, params=None, **kwargs):
+        return self._request('POST', resource, params=params, **kwargs)
 
     '''
     def _DELETE(self, path, params=None, payload=None):
