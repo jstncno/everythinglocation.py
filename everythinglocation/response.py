@@ -3,7 +3,7 @@
 """
 everythinglocation.response
 ~~~~~~~~~~~~~~~
-This module implements the response class that is returned by
+This module implements the response classes that are returned by
 API calls to everythinglocation.
 
 :copyright: (c) 2015 by Justin Cano
@@ -41,13 +41,22 @@ class ELResponse(object):
     def __str__(self):
         return pprint.pformat(self.body)
 
-class BatchResponse(ELResponse):
+class BatchCreateResponse(ELResponse):
     '''
-    The Batch response
+    The Batch response for the Create resource
     '''
     def __init__(self, response):
-        super(BatchResponse, self).__init__(response)
+        super(BatchCreateResponse, self).__init__(response)
         if 'confirmcode' not in response:
             raise BadResponseError
         self.confirm_code = response['confirmcode']
 
+class BatchConfirmResponse(ELResponse):
+    '''
+    The Batch response for the Confirm resource
+    '''
+    def __init__(self, response):
+        super(BatchConfirmResponse, self).__init__(response)
+        if 'BatchId' not in response:
+            raise BadResponseError
+        self.batch_id = response['BatchId']

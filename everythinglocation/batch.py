@@ -14,7 +14,7 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 from .base import Loqate
 from .everythinglocation import EverythingLocation
-from .response import ELResponse, BatchResponse
+from .response import BatchConfirmResponse, BatchCreateResponse
 
 class MissingRequiredParameters(Exception):
     pass
@@ -64,14 +64,13 @@ class Batch(Loqate):
         headers = {
             'Content-Type': encoder.content_type
         }
-
-        response = self._post('create', params , data=encoder, headers=headers)
+        response = BatchCreateResponse(self._POST('create', params , data=encoder, headers=headers))
         self.jobs[response.confirm_code] = response
 
-        # TODOD: if auto, then confirm job
         if auto:
             params['confirmcode'] = response.confirm_code
-            params['hasheaderline'] = False
+            if 'hasheaderline' not in params.keys():
+                params['hasheaderline'] = True
             self.confirm(params)
 
         return response
@@ -79,13 +78,9 @@ class Batch(Loqate):
     def confirm(self, params):
         params = self._try_confirm_params(params)
         self.jobs.pop(params['confirmcode'], None)
-        return self._process('confirm', params)
-
-    def _post(self, resource, params, **kwargs):
-        return BatchResponse(self._POST(resource, params=params, **kwargs))
-
-    def _process(self, resource, params):
-        return ELResponse(self._GET(params=params, resource=resource))
+        response = BatchConfirmResponse(self._GET('confirm', params))
+        print response.body
+        return response
 
 class ELAuth(object):
     def __init__(self, auth=None, **kwargs):

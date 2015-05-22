@@ -40,7 +40,7 @@ class TestBatch(unittest.TestCase):
             'optiondefaultcountry': 'USA'
         }
 
-        r = self.batch.create(params, auto=True)
+        r = self.batch.create(params)
         assert r.status == 'OK'
         print r
 
