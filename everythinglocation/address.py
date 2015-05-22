@@ -29,5 +29,4 @@ class ELAddress(object):
                 setattr(self, key.replace('-', '_'), response[key])
 
     def __str__(self):
-        import pprint
         return pprint.pformat({key: self.__dict__[key] for key in self.__dict__.keys() if key != 'fields'})

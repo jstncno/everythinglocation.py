@@ -14,7 +14,7 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 from .base import Loqate
 from .everythinglocation import EverythingLocation
-from .response import ELResponse
+from .response import BatchResponse
 
 class MissingRequiredParameters(Exception):
     pass
@@ -30,6 +30,7 @@ class Batch(Loqate):
 
     def __init__(self):
         super(Batch, self).__init__()
+        self.jobs = {} # store jobs as dict with key == BatchResponse.confirm_code
 
     def _get_params(self, params):
         super(Batch, self)._get_params(params)
@@ -41,7 +42,7 @@ class Batch(Loqate):
             raise MissingRequiredParameters
         return params
 
-    def create(self, params):
+    def create(self, params, auto=False):
         params = self._get_params(params)
         file_path = os.path.abspath(params['lqt_file'])
         encoder = MultipartEncoder(
@@ -50,10 +51,18 @@ class Batch(Loqate):
         headers = {
             'Content-Type': encoder.content_type
         }
-        return self._post(params, 'create', data=encoder, headers=headers)
 
-    def _post(self, params, resource, **kwargs):
-        return ELResponse(self._POST(params=params, resource=resource, **kwargs))
+        response = self._post('create', params , data=encoder, headers=headers)
+        self.jobs[response.confirm_code] = response
+
+        # TODOD: if auto, then confirm job
+        # if auto:
+        #   self.confirm(response.confirm_code)
+
+        return response
+
+    def _post(self, resource, params, **kwargs):
+        return BatchResponse(self._POST(resource, params=params, **kwargs))
 
 class ELAuth(object):
     def __init__(self, auth=None, **kwargs):

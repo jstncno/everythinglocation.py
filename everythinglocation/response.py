@@ -10,7 +10,7 @@ API calls to everythinglocation.
 :license: MIT, see LICENSE for more details
 """
 
-import json, requests
+import json, requests, pprint
 from .address import ELAddress
 
 class BadResponseError(Exception):
@@ -37,3 +37,17 @@ class ELResponse(object):
     def _build_results(self, results):
         for result in results:
             self.results.append(ELAddress(result))
+
+    def __str__(self):
+        return pprint.pformat(self.body)
+
+class BatchResponse(ELResponse):
+    '''
+    The Batch response
+    '''
+    def __init__(self, response):
+        super(BatchResponse, self).__init__(response)
+        if 'confirmcode' not in response:
+            raise BadResponseError
+        self.confirm_code = response['confirmcode']
+

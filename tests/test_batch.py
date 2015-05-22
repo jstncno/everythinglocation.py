@@ -42,7 +42,7 @@ class TestBatch(unittest.TestCase):
 
         r = self.batch.create(params)
         assert r.status == 'OK'
-
+        print r
 
 
 if __name__ == '__main__':
