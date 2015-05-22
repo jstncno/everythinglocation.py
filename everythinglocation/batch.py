@@ -9,12 +9,15 @@ everythinglocation API.
 :copyright: (c) 2015 by Justin Cano
 :license: MIT, see LICENSE for more details
 """
-import requests
+import requests, os
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 from .base import Loqate
 from .everythinglocation import EverythingLocation
 from .response import ELResponse
+
+class MissingRequiredParameters(Exception):
+    pass
 
 class InvalidCredentialsError(Exception):
     pass
@@ -28,18 +31,29 @@ class Batch(Loqate):
     def __init__(self):
         super(Batch, self).__init__()
 
+    def _get_params(self, params):
+        super(Batch, self)._get_params(params)
+        try:
+            assert 'name' in params.keys()
+            assert 'optiondefaultcountry' in params.keys()
+            assert 'lqt_file' in params.keys()
+        except:
+            raise MissingRequiredParameters
+        return params
+
     def create(self, params):
-        params
-        return self._process(params)
+        params = self._get_params(params)
+        file_path = os.path.abspath(params['lqt_file'])
+        encoder = MultipartEncoder(
+            fields={'lqt_file': (params['lqt_file'], open(file_path, 'rb'), 'text/plain')}
+        )
+        headers = {
+            'Content-Type': encoder.content_type
+        }
+        return self._post(params, 'create', data=encoder, headers=headers)
 
-    def search(self, params, geocode=False):
-        params['p'] = 's'
-        if geocode:
-            params['p'] += '+g'
-        return self._process(params)
-
-    def _process(self, params):
-        return ELResponse(self._GET(params=params))
+    def _post(self, params, resource, **kwargs):
+        return ELResponse(self._POST(params=params, resource=resource, **kwargs))
 
 class ELAuth(object):
     def __init__(self, auth=None, **kwargs):
