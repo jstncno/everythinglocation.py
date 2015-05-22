@@ -31,7 +31,8 @@ class Batch(Loqate):
 
     def __init__(self):
         super(Batch, self).__init__()
-        self.jobs = {} # store jobs as dict with key == BatchResponse.confirm_code
+        self.job_queue = {} # store pending jobs (BatchCreateResponse) as dict with key == BatchCreateResponse.confirm_code
+        self.jobs = {} # store processing jobs (BatchConfirmResponse) as dict with key == BatchConfirmResponse.batch_id
 
     def _try_create_params(self, params):
         super(Batch, self)._get_params(params)
@@ -65,7 +66,7 @@ class Batch(Loqate):
             'Content-Type': encoder.content_type
         }
         response = BatchCreateResponse(self._POST('create', params , data=encoder, headers=headers))
-        self.jobs[response.confirm_code] = response
+        self.job_queue[response.confirm_code] = response
 
         if auto:
             params['confirmcode'] = response.confirm_code
@@ -77,8 +78,9 @@ class Batch(Loqate):
 
     def confirm(self, params):
         params = self._try_confirm_params(params)
-        self.jobs.pop(params['confirmcode'], None)
+        self.job_queue.pop(params['confirmcode'], None)
         response = BatchConfirmResponse(self._GET('confirm', params))
+        self.jobs[response.batch_id] = response
         print response.body
         return response
 

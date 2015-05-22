@@ -57,6 +57,8 @@ class BatchConfirmResponse(ELResponse):
     '''
     def __init__(self, response):
         super(BatchConfirmResponse, self).__init__(response)
-        if 'BatchId' not in response:
+        try:
+            self.batch_status = response['BatchStatus']
+            self.batch_id = response['BatchId']
+        except:
             raise BadResponseError
-        self.batch_id = response['BatchId']
