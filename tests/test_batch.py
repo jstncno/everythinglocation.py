@@ -12,6 +12,7 @@ This unittest module tests the Batch class
 import vcr
 import requests
 import unittest
+import pprint
 
 import everythinglocation
 
@@ -25,6 +26,7 @@ class TestBatch(unittest.TestCase):
         Basic setup
         '''
         self.batch = everythinglocation.Batch()
+        self.pprinter = pprint.PrettyPrinter()
 
     @vcr.use_cassette('tests/cassettes/batch.yaml')
     def test_create(self):
@@ -40,6 +42,7 @@ class TestBatch(unittest.TestCase):
 
         r = self.batch.create(params)
         assert r.status == 'OK'
+
 
 
 if __name__ == '__main__':
