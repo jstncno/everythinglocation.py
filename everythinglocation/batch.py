@@ -31,28 +31,6 @@ class Batch(Loqate):
         self.job_queue = {} # store pending jobs (BatchCreateResponse) as dict with key == BatchCreateResponse.confirm_code
         self.jobs = {} # store processing jobs (BatchConfirmResponse) as dict with key == BatchConfirmResponse.batch_id
 
-    def _try_create_params(self, params):
-        super(Batch, self)._get_params(params)
-        try:
-            assert 'name' in params.keys()
-            assert 'optiondefaultcountry' in params.keys()
-            assert 'lqt_file' in params.keys()
-            assert 'transactiontype' in params.keys()
-        except:
-            raise MissingRequiredParameters
-        return params
-
-    def _try_confirm_params(self, params):
-        super(Batch, self)._get_params(params)
-        try:
-            assert 'name' in params.keys()
-            assert 'confirmcode' in params.keys()
-            assert 'hasheaderline' in params.keys()
-            assert 'transactiontype' in params.keys()
-        except:
-            raise MissingRequiredParameters
-        return params
-
     def create(self, params, auto=False):
         params = self._try_create_params(params)
         file_path = os.path.abspath(params['lqt_file'])
@@ -81,4 +59,24 @@ class Batch(Loqate):
         print response.body
         return response
 
+    def _try_create_params(self, params):
+        super(Batch, self)._get_params(params)
+        try:
+            assert 'name' in params.keys()
+            assert 'optiondefaultcountry' in params.keys()
+            assert 'lqt_file' in params.keys()
+            assert 'transactiontype' in params.keys()
+        except:
+            raise MissingRequiredParameters
+        return params
 
+    def _try_confirm_params(self, params):
+        super(Batch, self)._get_params(params)
+        try:
+            assert 'name' in params.keys()
+            assert 'confirmcode' in params.keys()
+            assert 'hasheaderline' in params.keys()
+            assert 'transactiontype' in params.keys()
+        except:
+            raise MissingRequiredParameters
+        return params
