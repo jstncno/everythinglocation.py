@@ -13,6 +13,9 @@ import requests
 from .base import Loqate
 from .response import ELResponse, ELAuth
 
+class InvalidCredentialsError(Exception):
+    pass
+
 class EverythingLocation(Loqate):
     BASE_PATH = 'rest'
     RESOURCES = {
@@ -38,9 +41,21 @@ class EverythingLocation(Loqate):
         return self._process(params)
 
     def authorize(self, auth=None, **kwargs):
-        response = self._process(auth, resource='authorize')
-        return ELAuth(response)
+        if auth:
+            auth = self._assert_auth(auth)
+        else:
+            auth = self._assert_auth(kwargs)
+        return ELAuth(self._GET(params=auth, resource='authorize'))
 
     def _process(self, params, resource=None):
         return ELResponse(self._GET(params=params, resource=resource))
 
+    def _assert_auth(self, auth):
+        try:
+            assert 'username' in auth.keys()
+            assert 'password' in auth.keys()
+            for key, value in auth.iteritems():
+                auth[key] = value
+        except:
+            raise InvalidCredentialsError
+        return auth

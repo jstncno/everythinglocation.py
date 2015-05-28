@@ -16,9 +16,6 @@ from .address import ELAddress
 class BadResponseError(Exception):
     pass
 
-class InvalidCredentialsError(Exception):
-    pass
-
 class ELResponse(object):
     '''
     The object returned from calls to the everythinglocation API
@@ -67,23 +64,28 @@ class BatchConfirmResponse(ELResponse):
             raise BadResponseError
 
 class ELAuth(ELResponse):
+    '''
+    The ELAuth class holds the authorization session returned from the
+    everythinglocation Authorize resource
+    '''
     def __init__(self, response):
-        EL = EverythingLocation()
+        super(ELAuth, self).__init__(response)
         try:
-            if not auth:
-                assert 'username' in response.keys()
-                assert 'password' in response.keys()
-                for key, value in response.iteritems():
-                    auth[key] = value
-            else:
-                assert isinstance(auth, dict)
-                assert 'username' in auth.keys()
-                assert 'password' in auth.keys()
-            auth_session = EL.authorize(auth)
-            self._session_id = auth_response.session_id
+            #self.session_id = reponse['session_id']
+            assert 'session_id' in response.keys()
         except:
-            raise InvalidCredentialsError
+            raise BadResponseError
+        self._set_attrs_to_values(response)
 
+    def _set_attrs_to_values(self, response):
+        '''
+        Set dictionary values to class attributes
+        '''
+        if isinstance(response, dict):
+            for key in response.keys():
+                setattr(self, key.replace('-', '_'), response[key])
+
+    '''
     @property
     def session_id(self):
         return base64.b64encode(self._session_id)
@@ -91,3 +93,4 @@ class ELAuth(ELResponse):
     @session_id.setter
     def session_id(self, value):
         self._session_id = base64.b64encode(value)
+    '''

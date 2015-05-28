@@ -12,7 +12,7 @@ everythinglocation API.
 import requests, os
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
-from .base import Loqate, ELAuth
+from .base import Loqate
 from .everythinglocation import EverythingLocation
 from .response import BatchConfirmResponse, BatchCreateResponse
 

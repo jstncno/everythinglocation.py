@@ -12,6 +12,7 @@ This unittest module tests the ELAuth class
 import vcr
 import requests
 import unittest
+import os
 
 import everythinglocation
 
@@ -24,20 +25,23 @@ class TestAuth(unittest.TestCase):
         '''
         Basic setup
         '''
-        self.auth = everythinglocation.ELAuth{}
+        self.EL = everythinglocation.EverythingLocation()
+        username = os.environ['EVERYTHINGLOCATION_USERNAME']
+        password = os.environ['EVERYTHINGLOCATION_PASSWORD']
+        auth = {
+            'username': username,
+            'password': password
+        }
+        self.auth_session_1 = self.EL.authorize(auth)
+        self.auth_session_2 = self.EL.authorize(username=username, password=password)
 
     @vcr.use_cassette('tests/cassettes/auth.yaml')
     def test_auth(self):
         '''
         Tests ELAuth for validity
         '''
-        params = {'addr': '999 Baker Way San Mateo CA USA'}
-        result = self.auth.verify(params)
-        assert len(result.results) > 0
-        print
-        print result.results[0].fields
-        print '-' * 70
-
+        assert 'session_id' in self.auth_session_1.body
+        assert 'session_id' in self.auth_session_2.body
 
 if __name__ == '__main__':
     unittest.main()
