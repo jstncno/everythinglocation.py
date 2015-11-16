@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>everythinglocation.py by earthican</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>everythinglocation.py</h1>
+        <p>A Python library wrapper around the everythinglocation API</p>
+
+        <p class="view"><a href="https://github.com/earthican/everythinglocation.py">View the Project on GitHub <small>earthican/everythinglocation.py</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/earthican/everythinglocation.py/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/earthican/everythinglocation.py/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/earthican/everythinglocation.py">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="everythinglocationpy" class="anchor" href="#everythinglocationpy" aria-hidden="true"><span class="octicon octicon-link"></span></a>everythinglocation.py</h1>
+
+<h2>
+<a id="a-wrapper-for-the-everythinglocation-api" class="anchor" href="#a-wrapper-for-the-everythinglocation-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>A wrapper for the everythinglocation API</h2>
+
+<p><em>everythinglocation.py</em> is a Pythonic wrapper library for the <a href="https://www.everythinglocation.com">everythinglocation</a> API. By calling the functions and methods available in <em>everythinglocation.py</em> you can simplify your code and easily access the Address Verification and Geocoding services that <strong>everythinglocation</strong> provides. To learn more about <strong>everythinglocation</strong>, visit their website at <a href="https://www.everythinglocation.com">https://www.everythinglocation.com</a>. <strong>everythinglocation</strong> is a product of <a href="http://www.loqate.com">GBG Loqate</a>.</p>
+
+<p><strong>NOTE</strong>: <em>everythinglocation.py</em> is still currently in its development stages. This should not be used for production as this branch is unstable and may produce unexpected results.</p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Currently able to make Verify requests to the <strong>everythinglocation</strong> API </li>
+<li>Implemented unit tests to upkeep robustness of code now and throughout the development phases</li>
+<li>Search, Geocode, and more coming soon....</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Installation of <em>everythinglocation.py</em> is currently only available by downloading the <a href="https://github.com/bumrush/everythinglocation.py">source from GitHub</a> and installing it yourself. There are plans to release this packing to the Python Package Index (PyPI) in the near future.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h4>
+<a id="api-key" class="anchor" href="#api-key" aria-hidden="true"><span class="octicon octicon-link"></span></a>API Key</h4>
+
+<p>In order to use <em>everythinglocation.py</em>, you must have an API key. To obtain a key, please visit the <a href="https://www.everythinglocation.com">everythinglocation website</a> and sign up for an account (your first 100 calls are free).</p>
+
+<p><em>everythinglocation.py</em> loads your API key from an environment variable called <code>EVERYTHINGLOCATION_API_KEY</code>. If no such environment variable exists, you can assign it like so:</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">&gt;&gt;&gt;</span> <span class="pl-k">import</span> everythinglocation
+<span class="pl-k">&gt;&gt;&gt;</span> everythinglocation.API_KEY <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR_API_KEY_HERE<span class="pl-pds">'</span></span></pre></div>
+
+<h4>
+<a id="making-calls-to-everythinglocation" class="anchor" href="#making-calls-to-everythinglocation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Making calls to <strong>everythinglocation</strong>
+</h4>
+
+<p>The <code>EverythingLocation()</code> class takes in a Python dictionary as input to send to the <strong>everythinglocation</strong> service and returns a <strong>ELReponse</strong> object.</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">&gt;&gt;&gt;</span> <span class="pl-k">import</span> everythinglocation
+<span class="pl-k">&gt;&gt;&gt;</span> EL <span class="pl-k">=</span> everythinglocation.EverythingLocation()
+<span class="pl-k">&gt;&gt;&gt;</span> <span class="pl-k">print</span> EL.version
+<span class="pl-c1">2.15</span>.<span class="pl-c1">0.7762</span>
+<span class="pl-k">&gt;&gt;&gt;</span> params <span class="pl-k">=</span> {<span class="pl-s"><span class="pl-pds">'</span>addr<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>999 Baker Way San Mateo CA USA<span class="pl-pds">'</span></span>}
+<span class="pl-k">&gt;&gt;&gt;</span> response <span class="pl-k">=</span> EL.verify(params)
+<span class="pl-k">&gt;&gt;&gt;</span> <span class="pl-k">print</span> response.results[<span class="pl-c1">0</span>].AVC
+V44<span class="pl-k">-</span>I44<span class="pl-k">-</span>P3<span class="pl-k">-</span><span class="pl-c1">100</span>
+<span class="pl-k">&gt;&gt;&gt;</span> <span class="pl-k">print</span> response.results[<span class="pl-c1">0</span>].Address1
+<span class="pl-c1">999</span> Baker Way
+<span class="pl-k">&gt;&gt;&gt;</span> <span class="pl-k">print</span> response.results[<span class="pl-c1">0</span>].Address2
+San Mateo CA <span class="pl-c1">94404</span><span class="pl-k">-</span><span class="pl-c1">1578</span>
+<span class="pl-k">&gt;&gt;&gt;</span> <span class="pl-k">print</span> response.results[<span class="pl-c1">0</span>].CountryName
+United States
+<span class="pl-k">&gt;&gt;&gt;</span> <span class="pl-k">print</span> response.results[<span class="pl-c1">0</span>].ISO3166_2
+US</pre></div>
+
+<p>For more information about input parameters and output fields, please visit the <a href="https://www.everythinglocation.com/api-rest-transactional/">everythinglocation REST Transactional Processing Documentation</a>.</p>
+
+<h2>
+<a id="future" class="anchor" href="#future" aria-hidden="true"><span class="octicon octicon-link"></span></a>Future</h2>
+
+<p>More features and documentation coming soon.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/earthican">earthican</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
