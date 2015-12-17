@@ -1,6 +1,6 @@
 # everythinglocation.py
 
-![Build Status](https://travis-ci.org/bumrush/everythinglocation.py.svg?branch=master)
+[![Build Status](https://travis-ci.org/earthican/everythinglocation.py.svg?branch=master)](https://travis-ci.org/earthican/everythinglocation.py)
 
 A wrapper for the everythinglocation API
 ----------------------------------------
