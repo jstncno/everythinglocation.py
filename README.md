@@ -7,8 +7,6 @@ A wrapper for the everythinglocation API
 
 _everythinglocation.py_ is a Pythonic wrapper library for the [everythinglocation](https://www.everythinglocation.com) API. By calling the functions and methods available in _everythinglocation.py_ you can simplify your code and easily access the Address Verification and Geocoding services that **everythinglocation** provides. To learn more about **everythinglocation**, visit their website at [https://www.everythinglocation.com](https://www.everythinglocation.com). **everythinglocation** is a product of [GBG Loqate](http://www.loqate.com).
 
-**NOTE**: _everythinglocation.py_ is still currently in its development stages. This should not be used for production as this branch is unstable and may produce unexpected results.
-
 Features
 --------
 * Currently able to make Verify requests to the **everythinglocation** API 
@@ -17,7 +15,14 @@ Features
 
 Installation
 ------------
-Installation of _everythinglocation.py_ is currently only available by downloading the [source from GitHub](https://github.com/bumrush/everythinglocation.py) and installing it yourself. There are plans to release this packing to the Python Package Index (PyPI) in the near future.
+Installation of _everythinglocation.py_ is currently only available by downloading the [source from GitHub](https://github.com/earthican/everythinglocation.py) and installing it yourself:
+
+```bash
+$ cd path/to/everythinglocation.py/
+$ python setup.py
+```
+
+There are plans to release this packing to the Python Package Index (PyPI) in the near future.
 
 Usage
 -----
@@ -54,4 +59,4 @@ For more information about input parameters and output fields, please visit the 
 
 Future
 ------
-More features and documentation coming soon.
+More features and documentation coming soon. Have a request? Please [file an issue](https://github.com/earthican/everythinglocation.py/issues/new).
