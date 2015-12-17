@@ -1,8 +1,9 @@
 *.pyc
-.env
+.venv
 tests/cassettes/
 test.py
 sample.txt
+*.bkp
 
 #### joe made this: https://goel.io/joe
 
