@@ -19,8 +19,8 @@ setup(
     description = 'A Python wrapper for everythinglocation API',
     keywords = ['everythinglocation', 'address', 'verification', 'geocoding'
                 'address verification', 'loqate' 'gbg', 'gbg loqate'],
-    url = 'https://github.com/bumrush/everythinglocation.py',
-    download_url = 'https://github.com/bumrush/everythinglocation.py/archive/master.zip',
+    url = 'https://github.com/earthican/everythinglocation.py',
+    download_url = 'https://github.com/earthican/everythinglocation.py/archive/master.zip',
     packages = ['everythinglocation'],
     long_description=read('README.md'),
     install_requires = ['requests==2.5.3'],
